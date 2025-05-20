@@ -1,244 +1,207 @@
-# Open WebUI 👋
+# VaultBot - Banking AI Assistant 🏦
 
 ![GitHub stars](https://img.shields.io/github/stars/open-webui/open-webui?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/open-webui/open-webui?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/open-webui/open-webui?style=social)
 ![GitHub repo size](https://img.shields.io/github/repo-size/open-webui/open-webui)
 ![GitHub language count](https://img.shields.io/github/languages/count/open-webui/open-webui)
 ![GitHub top language](https://img.shields.io/github/languages/top/open-webui/open-webui)
 ![GitHub last commit](https://img.shields.io/github/last-commit/open-webui/open-webui?color=red)
-[![Discord](https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&logoColor=white)](https://discord.gg/5rJgQTnV4s)
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
 
-**Open WebUI is an [extensible](https://docs.openwebui.com/features/plugin/), feature-rich, and user-friendly self-hosted AI platform designed to operate entirely offline.** It supports various LLM runners like **Ollama** and **OpenAI-compatible APIs**, with **built-in inference engine** for RAG, making it a **powerful AI deployment solution**.
+**VaultBot is a powerful AI-powered banking assistant built on top of [OpenWebUI](https://github.com/open-webui/open-webui). It provides accurate, RAG-enhanced responses to banking product queries while operating completely offline.**
 
-![Open WebUI Demo](./demo.gif)
+> 📘 **Project Documentation**: For detailed information about the project's development phases, implementation details, and technical decisions, please refer to the comprehensive documentation in the [`notebooks/`](./notebooks/) directory. This includes step-by-step guides, data processing workflows, and architecture decisions.
 
-> [!TIP]  
-> **Looking for an [Enterprise Plan](https://docs.openwebui.com/enterprise)?** – **[Speak with Our Sales Team Today!](mailto:sales@openwebui.com)**
->
-> Get **enhanced capabilities**, including **custom theming and branding**, **Service Level Agreement (SLA) support**, **Long-Term Support (LTS) versions**, and **more!**
+## 📚 Table of Contents
 
-For more information, be sure to check out our [Open WebUI Documentation](https://docs.openwebui.com/).
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Quick Start](#-quick-start)
+- [Methodology](#-methodology)
+- [Data Pipeline](#-data-pipeline)
+- [RAG Setup](#-rag-setup)
+- [Development](#-development)
+- [License](#-license)
 
-## Key Features of Open WebUI ⭐
+## 🔍 Overview
 
-- 🚀 **Effortless Setup**: Install seamlessly using Docker or Kubernetes (kubectl, kustomize or helm) for a hassle-free experience with support for both `:ollama` and `:cuda` tagged images.
+VaultBot serves as an AI-powered banking assistant that leverages Retrieval Augmented Generation (RAG) to provide accurate, factual responses about banking products, rates, and services. It's designed to operate entirely offline with zero data leakage, making it ideal for sensitive banking environments.
 
-- 🤝 **Ollama/OpenAI API Integration**: Effortlessly integrate OpenAI-compatible APIs for versatile conversations alongside Ollama models. Customize the OpenAI API URL to link with **LMStudio, GroqCloud, Mistral, OpenRouter, and more**.
+Built on OpenWebUI's extensible platform, VaultBot delivers a seamless chat experience enhanced with a custom knowledge base containing comprehensive product information, FAQs, and up-to-date rate sheets.
 
-- 🛡️ **Granular Permissions and User Groups**: By allowing administrators to create detailed user roles and permissions, we ensure a secure user environment. This granularity not only enhances security but also allows for customized user experiences, fostering a sense of ownership and responsibility amongst users.
+## ✨ Key Features
 
-- 📱 **Responsive Design**: Enjoy a seamless experience across Desktop PC, Laptop, and Mobile devices.
+- **Offline RAG Capabilities**: Fully offline operation with zero data leakage
+- **Product Knowledge Base**: Comprehensive information on banking products, rates, and services
+- **High-Quality Responses**: Accurate, factual answers driven by RAG-enhanced retrieval
+- **Responsive Design**: Seamless experience across desktop and mobile devices
+- **Easy Setup**: Quick installation through pip or Docker
+- **Extensible Architecture**: Easy to update with new banking products or rate changes
+- **Security-First Approach**: Built with data privacy and security as core principles
 
-- 📱 **Progressive Web App (PWA) for Mobile**: Enjoy a native app-like experience on your mobile device with our PWA, providing offline access on localhost and a seamless user interface.
+## 🏗️ Architecture
 
-- ✒️🔢 **Full Markdown and LaTeX Support**: Elevate your LLM experience with comprehensive Markdown and LaTeX capabilities for enriched interaction.
+![Architecture Diagram](./notebooks/images/architecture.png)
 
-- 🎤📹 **Hands-Free Voice/Video Call**: Experience seamless communication with integrated hands-free voice and video call features, allowing for a more dynamic and interactive chat environment.
+VaultBot follows a modular architecture:
 
-- 🛠️ **Model Builder**: Easily create Ollama models via the Web UI. Create and add custom characters/agents, customize chat elements, and import models effortlessly through [Open WebUI Community](https://openwebui.com/) integration.
+1. **Frontend**: Modern web interface built on OpenWebUI's responsive design
+2. **Backend**: Python-based API server with RAG processing capabilities
+3. **Vector Database**: ChromaDB for efficient similarity search
+4. **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2` for high-quality semantic embeddings
+5. **LLM**: Meta's `llama3.2:3b` for efficient, accurate response generation
 
-- 🐍 **Native Python Function Calling Tool**: Enhance your LLMs with built-in code editor support in the tools workspace. Bring Your Own Function (BYOF) by simply adding your pure Python functions, enabling seamless integration with LLMs.
+## 🚀 Quick Start
 
-- 📚 **Local RAG Integration**: Dive into the future of chat interactions with groundbreaking Retrieval Augmented Generation (RAG) support. This feature seamlessly integrates document interactions into your chat experience. You can load documents directly into the chat or add files to your document library, effortlessly accessing them using the `#` command before a query.
+### Option 1: Python Installation
 
-- 🔍 **Web Search for RAG**: Perform web searches using providers like `SearXNG`, `Google PSE`, `Brave Search`, `serpstack`, `serper`, `Serply`, `DuckDuckGo`, `TavilySearch`, `SearchApi` and `Bing` and inject the results directly into your chat experience.
+Requires Python 3.12+
 
-- 🌐 **Web Browsing Capability**: Seamlessly integrate websites into your chat experience using the `#` command followed by a URL. This feature allows you to incorporate web content directly into your conversations, enhancing the richness and depth of your interactions.
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/vaultbot.git
+cd vaultbot
 
-- 🎨 **Image Generation Integration**: Seamlessly incorporate image generation capabilities using options such as AUTOMATIC1111 API or ComfyUI (local), and OpenAI's DALL-E (external), enriching your chat experience with dynamic visual content.
+# Install dependencies
+pip install uv
+uv sync
 
-- ⚙️ **Many Models Conversations**: Effortlessly engage with various models simultaneously, harnessing their unique strengths for optimal responses. Enhance your experience by leveraging a diverse set of models in parallel.
+# Start the server
+./backend/start.sh
+```
 
-- 🔐 **Role-Based Access Control (RBAC)**: Ensure secure access with restricted permissions; only authorized individuals can access your Ollama, and exclusive model creation/pulling rights are reserved for administrators.
+### Option 2: Docker Installation
 
-- 🌐🌍 **Multilingual Support**: Experience Open WebUI in your preferred language with our internationalization (i18n) support. Join us in expanding our supported languages! We're actively seeking contributors!
+```bash
+docker run -d -p 3000:8080 \
+  -v vaultbot-data:/app/backend/data \
+  --name vaultbot \
+  --restart always \
+  ghcr.io/yourusername/vaultbot:latest
+```
 
-- 🧩 **Pipelines, Open WebUI Plugin Support**: Seamlessly integrate custom logic and Python libraries into Open WebUI using [Pipelines Plugin Framework](https://github.com/open-webui/pipelines). Launch your Pipelines instance, set the OpenAI URL to the Pipelines URL, and explore endless possibilities. [Examples](https://github.com/open-webui/pipelines/tree/main/examples) include **Function Calling**, User **Rate Limiting** to control access, **Usage Monitoring** with tools like Langfuse, **Live Translation with LibreTranslate** for multilingual support, **Toxic Message Filtering** and much more.
+After installation, access VaultBot at [http://localhost:8080](http://localhost:8080) (or port 3000 for Docker).
 
-- 🌟 **Continuous Updates**: We are committed to improving Open WebUI with regular updates, fixes, and new features.
+## 🧪 Methodology
 
-Want to learn more about Open WebUI's features? Check out our [Open WebUI documentation](https://docs.openwebui.com/features) for a comprehensive overview!
+### Model Selection
 
-## Sponsors 🙌
+- **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2`
+  - Lightweight (384 dimensions) with strong performance
+  - Fast inference suitable for real-time queries
+  - Low memory footprint, ideal for offline deployment
+  - Top-performer for semantic search in similar-sized models
 
-#### Emerald
+- **LLM**: `meta/llama3.2:3b`
+  - 3B parameters provide good balance of performance and resource usage
+  - Strong instruction-following capabilities
+  - Efficient inference on consumer hardware
+  - Low latency, critical for responsive chat interactions
+  - Top performer on Open LLM Leaderboard for <6B parameter models
 
-<table>
-  <tr>
-    <td>
-      <a href="https://n8n.io/" target="_blank">
-        <img src="https://docs.openwebui.com/sponsors/logos/n8n.png" alt="n8n" style="width: 8rem; height: 8rem; border-radius: .75rem;" />
-      </a>
-    </td>
-    <td>
-      Does your interface have a backend yet?<br>Try <a href="https://n8n.io/">n8n</a>
-    </td>
-  </tr>
-</table>
+### Architecture Decisions
+
+- **RAG Pipeline**: Chosen over fine-tuning to leverage existing knowledge while maintaining flexibility
+- **Vector Store**: ChromaDB for fast similarity search and efficient storage
+- **API Design**: RESTful endpoints for seamless frontend integration
+- **Caching**: Response caching reduces LLM calls for common queries
+
+## 📊 Data Pipeline
+
+VaultBot's knowledge base is built through a comprehensive data preparation pipeline:
+
+1. **Raw Data Collection**: Banking product information, FAQs, and rate sheets
+2. **Data Transformation**:
+   - JSON → Markdown for FAQ content
+   - XLSX → CSV → Markdown for product details
+   - Rate sheet CSV → Markdown tables
+3. **Content Integration**: Merging into comprehensive RAG-ready document
+4. **Manual Review**: Human verification to ensure high-quality content
+5. **Embedding Generation**: Converting documents into vector embeddings
+
+The data pipeline creates structured, high-quality content optimized for retrieval through the RAG system, ensuring accurate and relevant responses.
+
+## 🧠 RAG Setup
+
+VaultBot's RAG system is configured for optimal performance:
+
+1. **Knowledge Base Configuration**:
+   - Name: `NUST Bank QnA Databank`
+   - Content: Comprehensive banking product information
+
+2. **Model Configuration**:
+   - Base Model: `llama3.2:latest`
+   - Temperature: `0.2` (prioritizes factual consistency)
+   - Context Length: `8192`
+   - Other parameters optimized for banking Q&A
+
+3. **RAG Settings**:
+   - Chunk Size: `1000`
+   - Chunk Overlap: `100`
+   - Embedding Model: `sentence-transformers/all-MiniLM-L6-v2`
+   - Top K: `3` (number of retrieved documents)
+
+4. **Security Settings**:
+   - Robust system instructions prevent prompt injection
+   - Built-in safeguards against adversarial queries
+
+## 💻 Development
+
+### Prerequisites
+
+- Python 3.12+
+- Node.js 18+
+- Git
+
+### Setup Steps
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/vaultbot.git
+   cd vaultbot
+   ```
+
+2. Build the frontend
+   ```bash
+   npm install
+   npm run build
+   ```
+
+3. Install backend dependencies
+   ```bash
+   pip install uv
+   uv sync
+   ```
+
+4. Start the development server
+   ```bash
+   ./backend/start.sh
+   ```
+
+### Project Structure
+
+```
+vaultbot/
+├── backend/            # Python backend
+├── data/               # RAG data
+│   ├── processed/      # Final processed data
+│   ├── processing/     # Intermediate files
+│   └── raw/            # Raw input data
+├── frontend/           # Web interface
+├── notebooks/          # Jupyter notebooks
+└── README.md           # This file
+```
+
+## 📜 License
+
+This project is licensed under the [BSD-3-Clause License](LICENSE) - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-We are incredibly grateful for the generous support of our sponsors. Their contributions help us to maintain and improve our project, ensuring we can continue to deliver quality work to our community. Thank you!
+## Authors
 
-## How to Install 🚀
+- Ayesh Ahmad (365966)
+- Farooq Afzal (365793)
+- Muhammad Faras Siddiqui (365988)
 
-### Installation via Python pip 🐍
-
-Open WebUI can be installed using pip, the Python package installer. Before proceeding, ensure you're using **Python 3.11** to avoid compatibility issues.
-
-1. **Install Open WebUI**:
-   Open your terminal and run the following command to install Open WebUI:
-
-   ```bash
-   pip install open-webui
-   ```
-
-2. **Running Open WebUI**:
-   After installation, you can start Open WebUI by executing:
-
-   ```bash
-   open-webui serve
-   ```
-
-This will start the Open WebUI server, which you can access at [http://localhost:8080](http://localhost:8080)
-
-### Quick Start with Docker 🐳
-
-> [!NOTE]  
-> Please note that for certain Docker environments, additional configurations might be needed. If you encounter any connection issues, our detailed guide on [Open WebUI Documentation](https://docs.openwebui.com/) is ready to assist you.
-
-> [!WARNING]
-> When using Docker to install Open WebUI, make sure to include the `-v open-webui:/app/backend/data` in your Docker command. This step is crucial as it ensures your database is properly mounted and prevents any loss of data.
-
-> [!TIP]  
-> If you wish to utilize Open WebUI with Ollama included or CUDA acceleration, we recommend utilizing our official images tagged with either `:cuda` or `:ollama`. To enable CUDA, you must install the [Nvidia CUDA container toolkit](https://docs.nvidia.com/dgx/nvidia-container-runtime-upgrade/) on your Linux/WSL system.
-
-### Installation with Default Configuration
-
-- **If Ollama is on your computer**, use this command:
-
-  ```bash
-  docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  ```
-
-- **If Ollama is on a Different Server**, use this command:
-
-  To connect to Ollama on another server, change the `OLLAMA_BASE_URL` to the server's URL:
-
-  ```bash
-  docker run -d -p 3000:8080 -e OLLAMA_BASE_URL=https://example.com -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  ```
-
-- **To run Open WebUI with Nvidia GPU support**, use this command:
-
-  ```bash
-  docker run -d -p 3000:8080 --gpus all --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:cuda
-  ```
-
-### Installation for OpenAI API Usage Only
-
-- **If you're only using OpenAI API**, use this command:
-
-  ```bash
-  docker run -d -p 3000:8080 -e OPENAI_API_KEY=your_secret_key -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-  ```
-
-### Installing Open WebUI with Bundled Ollama Support
-
-This installation method uses a single container image that bundles Open WebUI with Ollama, allowing for a streamlined setup via a single command. Choose the appropriate command based on your hardware setup:
-
-- **With GPU Support**:
-  Utilize GPU resources by running the following command:
-
-  ```bash
-  docker run -d -p 3000:8080 --gpus=all -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
-  ```
-
-- **For CPU Only**:
-  If you're not using a GPU, use this command instead:
-
-  ```bash
-  docker run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
-  ```
-
-Both commands facilitate a built-in, hassle-free installation of both Open WebUI and Ollama, ensuring that you can get everything up and running swiftly.
-
-After installation, you can access Open WebUI at [http://localhost:3000](http://localhost:3000). Enjoy! 😄
-
-### Other Installation Methods
-
-We offer various installation alternatives, including non-Docker native installation methods, Docker Compose, Kustomize, and Helm. Visit our [Open WebUI Documentation](https://docs.openwebui.com/getting-started/) or join our [Discord community](https://discord.gg/5rJgQTnV4s) for comprehensive guidance.
-
-### Troubleshooting
-
-Encountering connection issues? Our [Open WebUI Documentation](https://docs.openwebui.com/troubleshooting/) has got you covered. For further assistance and to join our vibrant community, visit the [Open WebUI Discord](https://discord.gg/5rJgQTnV4s).
-
-#### Open WebUI: Server Connection Error
-
-If you're experiencing connection issues, it’s often due to the WebUI docker container not being able to reach the Ollama server at 127.0.0.1:11434 (host.docker.internal:11434) inside the container . Use the `--network=host` flag in your docker command to resolve this. Note that the port changes from 3000 to 8080, resulting in the link: `http://localhost:8080`.
-
-**Example Docker Command**:
-
-```bash
-docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-```
-
-### Keeping Your Docker Installation Up-to-Date
-
-In case you want to update your local Docker installation to the latest version, you can do it with [Watchtower](https://containrrr.dev/watchtower/):
-
-```bash
-docker run --rm --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once open-webui
-```
-
-In the last part of the command, replace `open-webui` with your container name if it is different.
-
-Check our Updating Guide available in our [Open WebUI Documentation](https://docs.openwebui.com/getting-started/updating).
-
-### Using the Dev Branch 🌙
-
-> [!WARNING]
-> The `:dev` branch contains the latest unstable features and changes. Use it at your own risk as it may have bugs or incomplete features.
-
-If you want to try out the latest bleeding-edge features and are okay with occasional instability, you can use the `:dev` tag like this:
-
-```bash
-docker run -d -p 3000:8080 -v open-webui:/app/backend/data --name open-webui --add-host=host.docker.internal:host-gateway --restart always ghcr.io/open-webui/open-webui:dev
-```
-
-### Offline Mode
-
-If you are running Open WebUI in an offline environment, you can set the `HF_HUB_OFFLINE` environment variable to `1` to prevent attempts to download models from the internet.
-
-```bash
-export HF_HUB_OFFLINE=1
-```
-
-## What's Next? 🌟
-
-Discover upcoming features on our roadmap in the [Open WebUI Documentation](https://docs.openwebui.com/roadmap/).
-
-## License 📜
-
-This project is licensed under the [Open WebUI License](LICENSE), a revised BSD-3-Clause license. You receive all the same rights as the classic BSD-3 license: you can use, modify, and distribute the software, including in proprietary and commercial products, with minimal restrictions. The only additional requirement is to preserve the "Open WebUI" branding, as detailed in the LICENSE file. For full terms, see the [LICENSE](LICENSE) document. 📄
-
-## Support 💬
-
-If you have any questions, suggestions, or need assistance, please open an issue or join our
-[Open WebUI Discord community](https://discord.gg/5rJgQTnV4s) to connect with us! 🤝
-
-## Star History
-
-<a href="https://star-history.com/#open-webui/open-webui&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=open-webui/open-webui&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=open-webui/open-webui&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=open-webui/open-webui&type=Date" />
-  </picture>
-</a>
-
----
-
-Created by [Timothy Jaeryang Baek](https://github.com/tjbck) - Let's make Open WebUI even more amazing together! 💪
+Last Updated: May 4, 2025

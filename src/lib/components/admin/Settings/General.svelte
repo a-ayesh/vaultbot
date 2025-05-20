@@ -148,6 +148,7 @@
 									</a>
 								</div>
 
+								<!--
 								<button
 									class=" underline flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-500"
 									type="button"
@@ -157,6 +158,7 @@
 								>
 									<div>{$i18n.t("See what's new")}</div>
 								</button>
+								-->
 							</div>
 
 							<button
@@ -178,7 +180,7 @@
 									{$i18n.t('Help')}
 								</div>
 								<div class=" text-xs text-gray-500">
-									{$i18n.t('Discover how to use Open WebUI and seek support from the community.')}
+									{$i18n.t('Discover how to use VaultBot and seek support from the community.')}
 								</div>
 							</div>
 
